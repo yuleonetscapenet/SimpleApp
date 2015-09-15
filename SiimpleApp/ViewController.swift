@@ -8,18 +8,58 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController , UITextFieldDelegate{
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    //weak because Nib owns it
+    //! implict optional
+    // wrapped in optional
+    @IBOutlet weak var headlineLabel: UILabel!
+    
+    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var button: UIButton!
+    
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        // Do any additional setup after loading the view, typically from a nib.
+//    }
+//
+//    override func didReceiveMemoryWarning() {
+//        super.didReceiveMemoryWarning()
+//        // Dispose of any resources that can be recreated.
+//    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        super.viewDidAppear(animated);
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func buttonPressed(sender: UIButton)
+    {
+        
+        print("Hi ! ")
+        
+        headlineLabel.text = "Yah Swift!"
+        detailLabel.text = "World, I am rady for you "
+        view.backgroundColor = UIColor.yellowColor();
     }
 
-
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if let  name = textField.text where name.characters.count > 1  {
+            headlineLabel.text  = "Hello \(name)"
+            textField.resignFirstResponder();
+            return true;
+        }
+        
+        return false;
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.becomeFirstResponder();
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        print("\(textField.text)")
+    }
 }
 
