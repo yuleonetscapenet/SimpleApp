@@ -28,7 +28,7 @@ class ViewController: UIViewController , UITextFieldDelegate{
 //        // Dispose of any resources that can be recreated.
 //    }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear( _ animated: Bool) {
         
         super.viewDidAppear(animated);
         
@@ -41,14 +41,16 @@ class ViewController: UIViewController , UITextFieldDelegate{
         
         headlineLabel.text = "Yah Swift!"
         detailLabel.text = "World, I am rady for you "
-        view.backgroundColor = UIColor.yellowColor();
+        view.backgroundColor = .yellow
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if let  name = textField.text where name.characters.count > 1  {
+        if let  name = textField.text {
+            if name.count > 1 {
             headlineLabel.text  = "Hello \(name)"
             textField.resignFirstResponder();
             return true;
+            }
         }
         
         return false;
